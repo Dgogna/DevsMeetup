@@ -1,15 +1,31 @@
 const express = require("express");
+const { connectDB } = require("./config/database")
+
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
 const PORT = 7070;
 
-app.use((req,res)=>{
-    res.send("Hello welco also")
-})
 
-app.listen(PORT,()=>{
-    console.log(`Server is up and running on PORT: ${PORT}`)
+app.use(express.json());
+app.use(cookieParser());
+
+const authRoute = require("./routes/auth");
+const profileRoute = require("./routes/profile");
+const requestRoute = require("./routes/request")
+
+app.use("/", authRoute,profileRoute,  requestRoute);
+
+
+connectDB().then(() => {
+    console.log("Database is successfully connected");
+    app.listen(PORT, () => {
+        console.log(`Server is up and running on PORT: ${PORT}`)
+    })
+
+}).catch(() => {
+    console.log("Thre is some problem in the DB connection");
 })
 
 
