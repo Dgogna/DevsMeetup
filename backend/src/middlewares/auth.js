@@ -21,7 +21,7 @@ const userAuth = async (req, res, next) => {
       throw new Error("Please Login to continue furthur");
     }
   } catch (error) {
-    res.status(403).send("ERROR: " + error.message);
+    res.status(401).send("ERROR: " + error.message);
   }
 };
 
