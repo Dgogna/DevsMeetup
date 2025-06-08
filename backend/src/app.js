@@ -21,11 +21,11 @@ app.use("/", authRoute, profileRoute, requestRoute, userRoute);
 
 connectDB()
   .then(() => {
-    console.log("Database is successfully connected");
+    // //console.log("Database is successfully connected");
     app.listen(PORT, () => {
-      console.log(`Server is up and running on PORT: ${PORT}`);
+      // //console.log(`Server is up and running on PORT: ${PORT}`);
     });
   })
   .catch(() => {
-    console.log("Thre is some problem in the DB connection");
+    // //console.log("Thre is some problem in the DB connection");
   });

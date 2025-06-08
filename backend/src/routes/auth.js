@@ -34,15 +34,15 @@ router.post("/login", async (req, res) => {
 
     // check if the user is present with that email or not
     const user = await User.findOne({ emailId: emailId });
-    // console.log(user);
+    //  // //console.log(user);
     if (!user) {
       throw new Error("Invalid credentials");
     }
     // Now i have to comapre the passwords with that preseint in the DB
     const passwordIsValid = await user.validatePassword(password);
-    // console.log(userIsFound);
+    //  // //console.log(userIsFound);
     if (passwordIsValid) {
-      // console.log(user._id)
+      //  // //console.log(user._id)
       // I can also get this JWT sign with the schema methods
       const token = await user.getJWT();
       res.cookie("token", token, {

@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 const router = express.Router();
 
-const GET_POPULATED_COL = "firstName lastName about";
+const GET_POPULATED_COL = "firstName lastName about photoUrl";
 
 // Get all the pending requests for the loggen in user
 
@@ -72,7 +72,7 @@ router.get("/user/feed", userAuth, async (req, res) => {
 
     const skip = (page - 1) * limit;
 
-    // console.log(loggedInUser);
+    //  // //console.log(loggedInUser);
 
     const seenConnectionRequests = await connectionRequest
       .find({

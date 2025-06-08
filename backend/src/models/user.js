@@ -47,6 +47,8 @@ const userSchema = new mongoose.Schema(
     },
     photoUrl: {
       type: String,
+      default:
+        "https://cdn.vectorstock.com/i/preview-1x/54/12/person-gray-photo-placeholder-man-vector-24005412.jpg",
     },
     about: {
       type: String,
@@ -63,16 +65,16 @@ userSchema.methods.getJWT = function () {
   const user = this;
 
   const token = jwt.sign({ _id: user._id }, jwtSecret, { expiresIn: "7d" });
-  // console.log(token);
+  //  // //console.log(token);
   return token;
 };
 
 userSchema.methods.validatePassword = async function (password) {
   const user = this;
-  // console.log("Comming in this function to validate the password")
+  //  // //console.log("Comming in this function to validate the password")
   const passwordIsValid = await bcrypt.compare(password, user?.password);
 
-  // console.log("Is paass valid or not " + passwordIsValid);
+  //  // //console.log("Is paass valid or not " + passwordIsValid);
 
   return passwordIsValid;
 };
