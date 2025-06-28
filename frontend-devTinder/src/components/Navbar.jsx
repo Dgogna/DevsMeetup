@@ -20,15 +20,12 @@ const Navbar = () => {
         {},
         { withCredentials: true }
       );
-      // //console.log(response);
 
       //   will then clear the store
       dispatch(removeUser());
       dispatch(removeFeed());
       navigate("/login");
-    } catch (error) {
-      // //console.log("error in loggin out the user " + error);
-    }
+    } catch (error) {}
   };
 
   return (

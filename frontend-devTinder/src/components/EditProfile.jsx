@@ -12,12 +12,12 @@ const EditProfile = () => {
   const toastTimeout = useRef(null);
 
   const [profile, setProfile] = useState({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    photoUrl: user.photoUrl,
-    age: user.age,
-    gender: user.gender,
-    about: user.about,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    photoUrl: user?.photoUrl,
+    age: user?.age || "",
+    gender: user?.gender || "",
+    about: user?.about,
   });
 
   const [error, setError] = useState("");
@@ -37,7 +37,6 @@ const EditProfile = () => {
   const editProfile = async () => {
     if (toastTimeout.current) {
       clearTimeout(toastTimeout.current);
-      console.log("came in this if condirtion");
     }
 
     try {
@@ -138,7 +137,6 @@ const EditProfile = () => {
               onChange={handleChange}
             />
           </div>
-
           <div className="p-2">
             <p>About</p>
             <input
@@ -151,7 +149,6 @@ const EditProfile = () => {
             />
           </div>
           <p className="px-2 text-red-400">{error}</p>
-
           <div className="card-actions justify-center mt-4">
             <button className="btn btn-primary" onClick={() => editProfile()}>
               Edit Profile
@@ -161,15 +158,16 @@ const EditProfile = () => {
           {toast.showToast && (
             <>
               <div className="toast toast-end">
-                <div className={`alert alert-${toast.type}`}>
+                <div
+                  className={
+                    toast.type === "success"
+                      ? "alert alert-success"
+                      : "alert alert-error"
+                  }
+                >
                   <span>{toast.message}!</span>
                 </div>
               </div>
-              {/* <div className="toast toast-end">
-                <div className="alert alert-errro">
-                  <span>{toast.message}</span>
-                </div>
-              </div> */}
             </>
           )}
         </div>

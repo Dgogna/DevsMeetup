@@ -5,15 +5,22 @@ export const feedSlice = createSlice({
   initialState: [],
   reducers: {
     addFeed: (state, action) => {
-      // //console.log("commin in the action to add the feed of the user");
-      // //console.log(action.payload);
-
       const feed = action.payload;
       if (feed) {
-        // //console.log("Should come in this if condirion");
         state = action.payload;
         return state;
       }
+    },
+    removeUserFromFeed: (state, action) => {
+      console.log(action.payload);
+      const newFeed = state.filter((user) => {
+        return user._id !== action.payload;
+      });
+
+      console.log(newFeed);
+
+      state = newFeed;
+      return state;
     },
     removeFeed: (state, action) => {
       return [];
@@ -21,5 +28,5 @@ export const feedSlice = createSlice({
   },
 });
 
-export const { addFeed, removeFeed } = feedSlice.actions;
+export const { addFeed, removeUserFromFeed, removeFeed } = feedSlice.actions;
 export default feedSlice.reducer;

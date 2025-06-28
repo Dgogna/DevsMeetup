@@ -26,6 +26,10 @@ const Feed = () => {
     getUserFeed();
   }, []);
 
+  if (feed.length === 0) {
+    return <h1 className="text-center">All user are finished for you!</h1>;
+  }
+
   return (
     <>
       {feed.length > 0 &&
